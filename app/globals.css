@@ -16,8 +16,7 @@ a{color:inherit;text-decoration:none}
 .brand{font-size:1.25rem;font-weight:500;letter-spacing:-.02em}
 .brand b{color:var(--accent);font-weight:800}
 .search{display:flex;width:min(100%,640px);justify-self:center}
-.search input{flex:1;min-width:0;padding:10px 14px;border:1px solid var(--line);border-right:0;border-radius:10px 0 0 10px;background:var(--bg);color:var(--ink);font:inherit}
-.search button{padding:0 18px;border:0;border-radius:0 10px 10px 0;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;cursor:pointer}
+.search input{width:100%;min-width:0;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
 .login{padding:9px 16px;border:1px solid var(--accent);border-radius:10px;background:transparent;color:var(--accent);font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
 .login:hover{background:var(--accent);color:var(--accent-ink)}
 
@@ -70,7 +69,6 @@ a{color:inherit;text-decoration:none}
   .bar{grid-template-columns:1fr auto;gap:10px;padding-block:10px}
   .search{grid-column:1 / -1;grid-row:2;width:100%}
   .search input{padding:9px 11px}
-  .search button{padding-inline:14px}
   .layout{padding-block:16px}
   .tools{align-items:flex-start;flex-direction:column;gap:10px}
   .sort{width:100%;overflow-x:auto;padding-bottom:2px}
