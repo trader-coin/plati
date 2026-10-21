@@ -15,6 +15,7 @@ export default function CategoryPanel({ categories, activeCategory }) {
   const [open, setOpen] = useState(true);
 
   useEffect(() => {
+    if (window.matchMedia("(max-width: 560px)").matches) setOpen(false);
     const toggle = () => setOpen((current) => !current);
     document.addEventListener("toggle-categories", toggle);
     return () => document.removeEventListener("toggle-categories", toggle);
