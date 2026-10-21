@@ -1,4 +1,5 @@
 import { Manrope } from "next/font/google";
+import HeaderControls from "@/components/HeaderControls";
 import "./globals.css";
 
 const font = Manrope({ subsets: ["latin", "cyrillic", "vietnamese"] });
@@ -15,7 +16,10 @@ export default function RootLayout({ children }) {
             <form action="/" className="search" role="search">
               <input name="q" placeholder="Search games, keys, accounts, software…" aria-label="Search" />
             </form>
-            <button type="button" className="login">Login</button>
+            <div className="header-actions">
+              <HeaderControls />
+              <button type="button" className="login">Login</button>
+            </div>
           </div>
         </header>
         <main className="wrap">{children}</main>
