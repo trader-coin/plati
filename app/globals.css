@@ -15,6 +15,7 @@ a{color:inherit;text-decoration:none}
 
 .top{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
 .bar{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:12px}
+.mobile-navigation{display:none}
 .brand{font-size:1.25rem;font-weight:500;letter-spacing:-.02em}
 .brand b{color:var(--accent);font-weight:800}
 .search{display:flex;width:min(100%,640px);justify-self:center}
@@ -29,6 +30,10 @@ a{color:inherit;text-decoration:none}
 .locale-control:hover,.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
 .login{padding:9px 16px;border:1px solid var(--accent);border-radius:10px;background:transparent;color:var(--accent);font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
 .login:hover{background:var(--accent);color:var(--accent-ink)}
+.mobile-menu-wrap{position:relative}
+.mobile-menu{position:absolute;right:0;top:calc(100% + 8px);display:flex;flex-direction:column;gap:12px;min-width:190px;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 30px #0002}
+.mobile-menu-controls{display:flex;justify-content:flex-end}
+.mobile-login{padding:9px 12px;border:1px solid var(--accent);border-radius:9px;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;cursor:pointer}
 
 .layout{display:grid;grid-template-columns:240px 1fr;gap:24px;padding-block:24px}
 .side{align-self:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;position:sticky;top:80px}
@@ -76,7 +81,14 @@ a{color:inherit;text-decoration:none}
 }
 @media (max-width:560px){
   .wrap{padding-inline:12px}
-  .bar{grid-template-columns:1fr auto;gap:10px;padding-block:10px}
+  .bar{grid-template-columns:1fr;gap:10px;padding-block:10px}
+  .mobile-navigation{display:grid;grid-column:1;grid-template-columns:40px 1fr 40px;align-items:center;width:100%}
+  .mobile-brand{justify-self:center;font-size:1.15rem;font-weight:500;letter-spacing:-.02em}
+  .mobile-brand b{color:var(--accent);font-weight:800}
+  .mobile-icon-button{display:grid;place-items:center;width:36px;height:36px;padding:0;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);cursor:pointer}
+  .mobile-icon-button svg{width:20px;height:20px}
+  .mobile-icon-button:hover{border-color:var(--accent);color:var(--accent)}
+  .brand,.header-actions{display:none}
   .search{grid-column:1 / -1;grid-row:2;width:100%}
   .search input{padding:9px 11px}
   .header-actions{gap:6px}

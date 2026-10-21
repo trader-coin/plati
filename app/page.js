@@ -1,5 +1,6 @@
 import { db, ensureSchema } from "@/lib/db";
 import { T } from "@/components/I18nProvider";
+import CategoryPanel from "@/components/CategoryPanel";
 
 export const revalidate = 300;
 
@@ -27,15 +28,7 @@ export default async function Home({ searchParams }) {
   return (
     <div className="layout">
       <aside className="side">
-        <details className="category-panel" open>
-          <summary><T id="categories" /></summary>
-          <nav>
-            <a href="/" className={!cat ? "on" : ""}><T id="all" /></a>
-            {cats.rows.map((c) => (
-              <a key={c.id} href={`/?cat=${c.id}`} className={cat === c.id ? "on" : ""}>{c.name}</a>
-            ))}
-          </nav>
-        </details>
+        <CategoryPanel categories={cats.rows} activeCategory={cat} />
       </aside>
 
       <section>

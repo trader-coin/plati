@@ -2,6 +2,7 @@ import { Manrope } from "next/font/google";
 import HeaderControls from "@/components/HeaderControls";
 import I18nProvider, { T } from "@/components/I18nProvider";
 import LocalizedSearch from "@/components/LocalizedSearch";
+import MobileNavigation from "@/components/MobileNavigation";
 import "./globals.css";
 
 const font = Manrope({ subsets: ["latin", "cyrillic", "vietnamese"] });
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
         <I18nProvider>
           <header className="top">
             <div className="wrap bar">
+              <MobileNavigation />
               <a href="/" className="brand">Digital<b>Store</b></a>
               <LocalizedSearch />
               <div className="header-actions">
