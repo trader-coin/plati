@@ -28,6 +28,18 @@ function MoonIcon() {
   );
 }
 
+const LANGUAGES = [
+  ["en", "EN"],
+  ["vi", "VI"],
+  ["ru", "RU"],
+  ["zh-CN", "中文"],
+  ["ja", "日本語"],
+  ["ko", "한국어"],
+  ["es", "ES"],
+  ["fr", "FR"],
+  ["de", "DE"],
+];
+
 export default function HeaderControls() {
   const [theme, setTheme] = useState("light");
   const [locale, setLocale] = useState("en");
@@ -39,9 +51,10 @@ export default function HeaderControls() {
     setTheme(initialTheme);
     document.documentElement.dataset.theme = initialTheme;
 
-    const savedLocale = window.localStorage.getItem("locale") || "en";
-    setLocale(savedLocale);
-    document.documentElement.lang = savedLocale;
+    const savedLocale = window.localStorage.getItem("locale");
+    const initialLocale = LANGUAGES.some(([value]) => value === savedLocale) ? savedLocale : "en";
+    setLocale(initialLocale);
+    document.documentElement.lang = initialLocale;
   }, []);
 
   function toggleTheme() {
@@ -63,8 +76,9 @@ export default function HeaderControls() {
       <label className="locale-control" title="Select language">
         <GlobeIcon />
         <select value={locale} onChange={changeLocale} aria-label="Select language">
-          <option value="en">EN</option>
-          <option value="vi">VI</option>
+          {LANGUAGES.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
         </select>
       </label>
       <button
