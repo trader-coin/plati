@@ -26,7 +26,7 @@ export async function GET(req) {
   const all = [];
   for (const id of catIds) all.push(...(await getProducts(id)));
 
-  // Xếp hạng: bán chạy + đánh giá tốt. Chỉ đánh dấu top N để khớp giới hạn của Digiseller.
+  // Rank by sales and ratings. Mark only the top N items to match Digiseller's limit.
   const scored = all
     .map((p) => ({ ...p, score: p.sales + p.rating * 10 + Math.log1p(p.reviews) * 5 }))
     .sort((a, b) => b.score - a.score);

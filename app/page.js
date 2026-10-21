@@ -2,7 +2,7 @@ import { db, ensureSchema } from "@/lib/db";
 
 export const revalidate = 300;
 
-const money = (v, cur) => new Intl.NumberFormat("vi-VN", { style: "currency", currency: cur || "USD" }).format(v);
+const money = (v, cur) => new Intl.NumberFormat("en-US", { style: "currency", currency: cur || "USD" }).format(v);
 
 export default async function Home({ searchParams }) {
   await ensureSchema();
@@ -26,9 +26,9 @@ export default async function Home({ searchParams }) {
   return (
     <div className="layout">
       <aside className="side">
-        <h2>Danh mục</h2>
+        <h2>Categories</h2>
         <nav>
-          <a href="/" className={!cat ? "on" : ""}>Tất cả</a>
+          <a href="/" className={!cat ? "on" : ""}>All</a>
           {cats.rows.map((c) => (
             <a key={c.id} href={`/?cat=${c.id}`} className={cat === c.id ? "on" : ""}>{c.name}</a>
           ))}
@@ -37,16 +37,16 @@ export default async function Home({ searchParams }) {
 
       <section>
         <div className="tools">
-          <span>{prods.rows.length} sản phẩm</span>
+          <span>{prods.rows.length} products</span>
           <div className="sort">
-            <a href={href({ sort: "popular" })} className={sort === "popular" ? "on" : ""}>Phổ biến</a>
-            <a href={href({ sort: "cheap" })} className={sort === "cheap" ? "on" : ""}>Giá thấp</a>
-            <a href={href({ sort: "pricey" })} className={sort === "pricey" ? "on" : ""}>Giá cao</a>
+            <a href={href({ sort: "popular" })} className={sort === "popular" ? "on" : ""}>Popular</a>
+            <a href={href({ sort: "cheap" })} className={sort === "cheap" ? "on" : ""}>Lowest price</a>
+            <a href={href({ sort: "pricey" })} className={sort === "pricey" ? "on" : ""}>Highest price</a>
           </div>
         </div>
 
         {prods.rows.length === 0 ? (
-          <p className="empty">Chưa có sản phẩm. Chạy /api/sync để nạp dữ liệu, hoặc bỏ bộ lọc hiện tại.</p>
+          <p className="empty">No products found. Run /api/sync to load data, or clear the current filters.</p>
         ) : (
           <div className="grid">
             {prods.rows.map((p) => (
@@ -57,7 +57,7 @@ export default async function Home({ searchParams }) {
                   <strong>{money(p.price, p.currency)}</strong>
                   {p.rating > 0 && <span>★ {Number(p.rating).toFixed(1)}</span>}
                 </div>
-                <small>{p.seller_name} · đã bán {p.sales}</small>
+                <small>{p.seller_name} · {p.sales} sold</small>
               </a>
             ))}
           </div>

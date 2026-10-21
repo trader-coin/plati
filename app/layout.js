@@ -3,23 +3,23 @@ import "./globals.css";
 
 const font = Manrope({ subsets: ["latin", "cyrillic", "vietnamese"] });
 
-export const metadata = { title: "Digital Store", description: "Cửa hàng sản phẩm số" };
+export const metadata = { title: "Digital Store", description: "A marketplace for digital products" };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="en">
       <body className={font.className}>
         <header className="top">
           <div className="wrap bar">
             <a href="/" className="brand">Digital<b>Store</b></a>
             <form action="/" className="search" role="search">
-              <input name="q" placeholder="Tìm game, key, tài khoản, phần mềm…" aria-label="Tìm kiếm" />
-              <button>Tìm</button>
+              <input name="q" placeholder="Search games, keys, accounts, software…" aria-label="Search" />
+              <button>Search</button>
             </form>
           </div>
         </header>
         <main className="wrap">{children}</main>
-        <footer className="wrap foot">Thanh toán và giao hàng được xử lý bởi nền tảng Plati.Market.</footer>
+        <footer className="wrap foot">Payment and delivery are handled by the Plati.Market platform.</footer>
       </body>
     </html>
   );
