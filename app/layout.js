@@ -1,5 +1,5 @@
 import { Manrope } from "next/font/google";
-import HeaderControls from "@/components/HeaderControls";
+import DesktopNavigation from "@/components/DesktopNavigation";
 import I18nProvider, { T } from "@/components/I18nProvider";
 import LocalizedSearch from "@/components/LocalizedSearch";
 import MobileNavigation from "@/components/MobileNavigation";
@@ -15,14 +15,10 @@ export default function RootLayout({ children }) {
       <body className={font.className}>
         <I18nProvider>
           <header className="top">
-            <div className="wrap bar">
+            <DesktopNavigation />
+            <div className="mobile-header wrap">
               <MobileNavigation />
-              <a href="/" className="brand">Digital<b>Store</b></a>
               <LocalizedSearch />
-              <div className="header-actions">
-                <HeaderControls />
-                <button type="button" className="login"><T id="login" /></button>
-              </div>
             </div>
           </header>
           <main className="wrap">{children}</main>
