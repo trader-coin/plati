@@ -26,13 +26,15 @@ export default async function Home({ searchParams }) {
   return (
     <div className="layout">
       <aside className="side">
-        <h2>Categories</h2>
-        <nav>
-          <a href="/" className={!cat ? "on" : ""}>All</a>
-          {cats.rows.map((c) => (
-            <a key={c.id} href={`/?cat=${c.id}`} className={cat === c.id ? "on" : ""}>{c.name}</a>
-          ))}
-        </nav>
+        <details className="category-panel" open>
+          <summary>Categories</summary>
+          <nav>
+            <a href="/" className={!cat ? "on" : ""}>All</a>
+            {cats.rows.map((c) => (
+              <a key={c.id} href={`/?cat=${c.id}`} className={cat === c.id ? "on" : ""}>{c.name}</a>
+            ))}
+          </nav>
+        </details>
       </aside>
 
       <section>

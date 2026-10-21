@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
               <input name="q" placeholder="Search games, keys, accounts, software…" aria-label="Search" />
               <button>Search</button>
             </form>
+            <button type="button" className="login">Login</button>
           </div>
         </header>
         <main className="wrap">{children}</main>
