@@ -1,5 +1,7 @@
 import { Manrope } from "next/font/google";
 import HeaderControls from "@/components/HeaderControls";
+import I18nProvider, { T } from "@/components/I18nProvider";
+import LocalizedSearch from "@/components/LocalizedSearch";
 import "./globals.css";
 
 const font = Manrope({ subsets: ["latin", "cyrillic", "vietnamese"] });
@@ -10,20 +12,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className}>
-        <header className="top">
-          <div className="wrap bar">
-            <a href="/" className="brand">Digital<b>Store</b></a>
-            <form action="/" className="search" role="search">
-              <input name="q" placeholder="Search games, keys, accounts, software…" aria-label="Search" />
-            </form>
-            <div className="header-actions">
-              <HeaderControls />
-              <button type="button" className="login">Login</button>
+        <I18nProvider>
+          <header className="top">
+            <div className="wrap bar">
+              <a href="/" className="brand">Digital<b>Store</b></a>
+              <LocalizedSearch />
+              <div className="header-actions">
+                <HeaderControls />
+                <button type="button" className="login"><T id="login" /></button>
+              </div>
             </div>
-          </div>
-        </header>
-        <main className="wrap">{children}</main>
-        <footer className="wrap foot">Payment and delivery are handled by the Plati.Market platform.</footer>
+          </header>
+          <main className="wrap">{children}</main>
+          <footer className="wrap foot"><T id="footer" /></footer>
+        </I18nProvider>
       </body>
     </html>
   );

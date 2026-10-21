@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/I18nProvider";
 
 function GlobeIcon() {
   return (
@@ -42,7 +43,7 @@ const LANGUAGES = [
 
 export default function HeaderControls() {
   const [theme, setTheme] = useState("light");
-  const [locale, setLocale] = useState("en");
+  const { locale, setLocale, t } = useI18n();
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme");
@@ -51,10 +52,6 @@ export default function HeaderControls() {
     setTheme(initialTheme);
     document.documentElement.dataset.theme = initialTheme;
 
-    const savedLocale = window.localStorage.getItem("locale");
-    const initialLocale = LANGUAGES.some(([value]) => value === savedLocale) ? savedLocale : "en";
-    setLocale(initialLocale);
-    document.documentElement.lang = initialLocale;
   }, []);
 
   function toggleTheme() {
@@ -65,17 +62,14 @@ export default function HeaderControls() {
   }
 
   function changeLocale(event) {
-    const nextLocale = event.target.value;
-    setLocale(nextLocale);
-    window.localStorage.setItem("locale", nextLocale);
-    document.documentElement.lang = nextLocale;
+    setLocale(event.target.value);
   }
 
   return (
-    <div className="header-controls" aria-label="Display preferences">
-      <label className="locale-control" title="Select language">
+    <div className="header-controls" aria-label={t("displayPreferences")}>
+      <label className="locale-control" title={t("selectLanguage")}>
         <GlobeIcon />
-        <select value={locale} onChange={changeLocale} aria-label="Select language">
+        <select value={locale} onChange={changeLocale} aria-label={t("selectLanguage")}>
           {LANGUAGES.map(([value, label]) => (
             <option key={value} value={value}>{label}</option>
           ))}
@@ -85,8 +79,8 @@ export default function HeaderControls() {
         type="button"
         className="theme-toggle"
         onClick={toggleTheme}
-        aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-        title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+        aria-label={theme === "dark" ? t("switchToLight") : t("switchToDark")}
+        title={theme === "dark" ? t("switchToLight") : t("switchToDark")}
       >
         {theme === "dark" ? <SunIcon /> : <MoonIcon />}
       </button>

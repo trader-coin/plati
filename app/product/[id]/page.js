@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
+import { T } from "@/components/I18nProvider";
 
 export const revalidate = 300;
 
@@ -16,12 +17,12 @@ export default async function Product({ params }) {
     <div className="detail">
       <div className="img big">{p.image ? <img src={p.image} alt="" /> : null}</div>
       <div>
-        <a href="/" className="back">← Back to catalog</a>
+        <a href="/" className="back"><T id="backToCatalog" /></a>
         <h1>{p.name}</h1>
-        <p className="muted">Seller: {p.seller_name} · {p.sales} sold · ★ {Number(p.rating).toFixed(1)} ({p.reviews} reviews)</p>
+        <p className="muted"><T id="sellerLine" values={{ seller: p.seller_name, sales: p.sales, rating: Number(p.rating).toFixed(1), reviews: p.reviews }} /></p>
         <div className="buybox">
           <strong className="price">{price}</strong>
-          <a className="btn" href={buy} target="_blank" rel="noopener sponsored">Buy on Plati</a>
+          <a className="btn" href={buy} target="_blank" rel="noopener sponsored"><T id="buyOnPlati" /></a>
         </div>
         {p.description && <p className="desc">{p.description}</p>}
       </div>

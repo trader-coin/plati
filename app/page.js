@@ -1,4 +1,5 @@
 import { db, ensureSchema } from "@/lib/db";
+import { T } from "@/components/I18nProvider";
 
 export const revalidate = 300;
 
@@ -27,9 +28,9 @@ export default async function Home({ searchParams }) {
     <div className="layout">
       <aside className="side">
         <details className="category-panel" open>
-          <summary>Categories</summary>
+          <summary><T id="categories" /></summary>
           <nav>
-            <a href="/" className={!cat ? "on" : ""}>All</a>
+            <a href="/" className={!cat ? "on" : ""}><T id="all" /></a>
             {cats.rows.map((c) => (
               <a key={c.id} href={`/?cat=${c.id}`} className={cat === c.id ? "on" : ""}>{c.name}</a>
             ))}
@@ -39,16 +40,16 @@ export default async function Home({ searchParams }) {
 
       <section>
         <div className="tools">
-          <span>{prods.rows.length} products</span>
+          <span><T id="productsCount" values={{ count: prods.rows.length }} /></span>
           <div className="sort">
-            <a href={href({ sort: "popular" })} className={sort === "popular" ? "on" : ""}>Popular</a>
-            <a href={href({ sort: "cheap" })} className={sort === "cheap" ? "on" : ""}>Lowest price</a>
-            <a href={href({ sort: "pricey" })} className={sort === "pricey" ? "on" : ""}>Highest price</a>
+            <a href={href({ sort: "popular" })} className={sort === "popular" ? "on" : ""}><T id="popular" /></a>
+            <a href={href({ sort: "cheap" })} className={sort === "cheap" ? "on" : ""}><T id="lowestPrice" /></a>
+            <a href={href({ sort: "pricey" })} className={sort === "pricey" ? "on" : ""}><T id="highestPrice" /></a>
           </div>
         </div>
 
         {prods.rows.length === 0 ? (
-          <p className="empty">No products found. Run /api/sync to load data, or clear the current filters.</p>
+          <p className="empty"><T id="noProducts" /></p>
         ) : (
           <div className="grid">
             {prods.rows.map((p) => (
@@ -59,7 +60,7 @@ export default async function Home({ searchParams }) {
                   <strong>{money(p.price, p.currency)}</strong>
                   {p.rating > 0 && <span>★ {Number(p.rating).toFixed(1)}</span>}
                 </div>
-                <small>{p.seller_name} · {p.sales} sold</small>
+                <small><T id="sold" values={{ sales: p.sales }} /></small>
               </a>
             ))}
           </div>
